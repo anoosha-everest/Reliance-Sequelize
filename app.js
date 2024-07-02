@@ -32,8 +32,10 @@ const createEnumTypesAndSequences = async () => {
         console.log("Enum types created successfully");
 
         await sequelize.query(`
-                CREATE SEQUENCE cate START 1 INCREMENT 1;
-                CREATE SEQUENCE pur START 1 INCREMENT 1;
+            DROP SEQUENCE IF EXISTS cate;
+            CREATE SEQUENCE cate START 1 INCREMENT 1;
+            DROP SEQUENCE IF EXISTS pur;
+            CREATE SEQUENCE pur START 1 INCREMENT 1;
         `);
         console.log("Sequences created successfully");
     } catch (err) {
@@ -185,14 +187,14 @@ sequelize.sync({ force: true })
         const insertPurchase = async () => {
             try {
                 const purchases = await purchase.bulkCreate([
-                    { custId: 1, brandid: 91, brandName: "Rel_digital", item: "phone", amount: 1000, date: "2024-07-01" },
-                    { custId: 2, brandid: 92, brandName: "Jiomart", item: "dry fruits", amount: 1200, date: "2024-03-05" },
-                    { custId: 3, brandid: 94, brandName: "Netmeds", item: "skincare", amount: 2800, date: "2024-06-21" },
-                    { custId: 4, brandid: 93, brandName: "Trends", item: "jeans", amount: 3900, date: "2024-07-19" },
-                    { custId: 1, brandid: 95, brandName: "Petroleum", item: "petrol", amount: 9870, date: "2024-05-08" },
-                    { custId: 3, brandid: 92, brandName: "Jiomart", item: "oils", amount: 9820, date: "2024-01-01" },
-                    { custId: 4, brandid: 91, brandName: "Rel_digital", item: "laptop", amount: 13900, date: "2024-04-03" },
-                    { custId: 2, brandid: 94, brandName: "Netmeds", item: "eyecare", amount: 7630, date: "2024-02-18" }
+                    { custId: 1, brandid: 1, brandName: "Rel_digital", item: "phone", amount: 1000, date: "2024-07-01" },
+                    { custId: 2, brandid: 2, brandName: "Jiomart", item: "dry fruits", amount: 1200, date: "2024-03-05" },
+                    { custId: 3, brandid: 4, brandName: "Netmeds", item: "skincare", amount: 2800, date: "2024-06-21" },
+                    { custId: 4, brandid: 3, brandName: "Trends", item: "jeans", amount: 3900, date: "2024-07-19" },
+                    { custId: 1, brandid: 5, brandName: "Petroleum", item: "petrol", amount: 9870, date: "2024-05-08" },
+                    { custId: 3, brandid: 2, brandName: "Jiomart", item: "oils", amount: 9820, date: "2024-01-01" },
+                    { custId: 4, brandid: 1, brandName: "Rel_digital", item: "laptop", amount: 13900, date: "2024-04-03" },
+                    { custId: 2, brandid: 4, brandName: "Netmeds", item: "eyecare", amount: 7630, date: "2024-02-18" }
                 ]);
                 console.log('Purchases inserted successfully');
                 return purchases;
